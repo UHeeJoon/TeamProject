@@ -17,10 +17,10 @@ public class TotalSalesService {
 	public List<TotalSales> showTotalSales(){
 		return totalSalesRepositoryDao.select();
 	}
-	public void deleteProduct(String menuName) {
+	public void delete(String menuName) {
 		totalSalesRepositoryDao.delete(menuName);
 	}
-	public void updateProduct(String menuName) {
-		totalSalesRepositoryDao.delete(menuName);
+	public void update(String menuName) {
+		totalSalesRepositoryDao.update(menuName);
 	}
 }

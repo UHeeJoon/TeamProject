@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnectDB {
 	protected Connection conn = null;
@@ -13,9 +14,10 @@ public class ConnectDB {
 	protected String user = "hot6";
 	protected String password = "1234";
 	
+	protected String sql = null;
 	protected ResultSet rs = null;
+	protected Statement stmt = null;
 	protected PreparedStatement pstmt = null;
-
 	protected void connectDB() {
 		try {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -27,15 +29,6 @@ public class ConnectDB {
 		catch(ClassNotFoundException e) {
 //			e.printStackTrace();
 		}
-		finally {
-			if(conn != null) {
-				try { 
-					//연결 끊기
-					conn.close();
-					rs.close();
-					pstmt.close();
-				} catch (SQLException e) {}
-			}
-		}
+		
 	}
 }
