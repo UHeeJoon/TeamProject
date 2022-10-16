@@ -15,10 +15,10 @@ public class ProductService {
 		return;
 	}
 	public void deleteProduct(String menuName) {
-		
+		productRepositoryDao.delete(menuName);
 	}
 	public void updateProduct(String menuName) {
-		
+		productRepositoryDao.update(menuName);
 	}
 	public List<Product> getAllProduct(){
 		return productRepositoryDao.select();

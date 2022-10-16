@@ -10,8 +10,8 @@ public class ConnectDB {
 	protected Connection conn = null;
 	
 	protected String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	protected String user = null;
-	protected String password = null;
+	protected String user = "hot6";
+	protected String password = "1234";
 	
 	protected ResultSet rs = null;
 	protected PreparedStatement pstmt = null;

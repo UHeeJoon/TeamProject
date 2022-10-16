@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import model.TotalSales;
 import repository.TotalSalesRepository;
 
@@ -11,13 +13,19 @@ public class TotalSalesRepositoryDao extends ConnectDB implements TotalSalesRepo
 	}
 
 	@Override
-	public void update(TotalSales totalSales) {
+	public void update(String menuName) {
 		connectDB();
 	}
 
 	@Override
-	public void delete(TotalSales totalSales) {
+	public void delete(String menuName) {
 		connectDB();		
+	}
+
+	@Override
+	public List<TotalSales> select() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

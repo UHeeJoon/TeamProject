@@ -7,6 +7,6 @@ import model.Product;
 public interface ProductRepository {
 	public List<Product> select();
 	public void insert(Product product);
-	public void update(Product product);
-	public void delete(Product product);
+	public void update(String menuName);
+	public void delete(String menuName);
 }

@@ -10,6 +10,7 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 	@Override
 	public List<Product> select() {
 		connectDB();
+		
 		List<Product> product = null;
 		return product;
 	}
@@ -20,12 +21,12 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 	}
 
 	@Override
-	public void update(Product product) {
+	public void update(String menuName) {
 		connectDB();
 	}
 
 	@Override
-	public void delete(Product product) {
+	public void delete(String menuName) {
 		connectDB();
 	}
 
