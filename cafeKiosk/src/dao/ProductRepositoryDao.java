@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +14,6 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 		connectDB();
 		ArrayList<Product> product = new ArrayList<>();
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection(url, user, password);
-
 			sql = "SELECT category_name, menu_name, price FROM product";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -30,17 +26,17 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 			}
 		} catch (SQLException e) {
 //			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch(Exception e){
 //			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			if (conn != null) {
 				try {
 					// 연결 끊기
 					conn.close();
 					rs.close();
 					pstmt.close();
-				} catch (SQLException e) {
-				}
+				} catch (SQLException e) {}
 			}
 		}
 		return product;

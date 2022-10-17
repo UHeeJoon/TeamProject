@@ -1,5 +1,7 @@
 package view;
 
-public class PrintBill {
+import cafeKioskMain.AdminInfo;
 
+public class PrintBill {
+	private AdminInfo adminInfo;
 }
