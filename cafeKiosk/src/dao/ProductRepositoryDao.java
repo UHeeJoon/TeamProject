@@ -30,14 +30,7 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 //			e.printStackTrace();
 		}
 		finally {
-			if (conn != null) {
-				try {
-					// 연결 끊기
-					conn.close();
-					rs.close();
-					pstmt.close();
-				} catch (SQLException e) {}
-			}
+			terminateDB();
 		}
 		return product;
 	}
@@ -48,13 +41,40 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 	}
 
 	@Override
-	public void update(String menuName) {
+	public void update(String menuName, int price) {
 		connectDB();
+		try {
+			String sql = new StringBuilder()	// 문자열을 추가가 가능함, String은 추가 변경이 안됨
+					.append("UPDATE total_sales SET ")
+					.append("price=?, ")
+					.append("WHERE menu_name=?")
+					.toString();
+			
+			//PreparedStatement 얻기 및 값 지정
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 1200);
+			pstmt.setString(2, menuName);
+		}catch(SQLException e) {
+//			e.printStackTrace();
+		}
+		finally {
+			terminateDB();
+		}
 	}
 
 	@Override
 	public void delete(String menuName) {
 		connectDB();
+		try {
+			String sql = "DELETE FROM product WHERE menu_name=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, menuName);
+		}catch(SQLException e) {
+//			e.printStackTrace();
+		}finally {
+			terminateDB();
+		}
 	}
 
 }

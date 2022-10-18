@@ -1,13 +1,15 @@
 package view;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import controller.ProductController;
 import model.Product;
 
-public class PrintMenu {
+public class PrintMenu implements PrintView{
 	ProductController productController =  new ProductController();
+	@Override
 	public void print() {
 		List<Product> product = productController.getAllProduct();
 		
@@ -17,14 +19,20 @@ public class PrintMenu {
 				category.add(p.getCategory());
 			}
 		}
-		for (String c : category) {
-			System.out.println(c);
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡMENU LISTㅡㅡㅡㅡㅡㅡㅡㅡ");
+		for (int c = 0 ; c < category.size();c++) {
+	        System.out.println("============= " + category.get(c) + " ==============");
+
 			for (Product p : product) {
 //				System.out.println(p.getCategory() + " " + p.getMenuName() + " " + p.getPrice());
-				if (c.equals(p.getCategory())) {
-					System.out.println("== " + p.getMenuName() + " : " + p.getPrice());
+				if (category.get(c).equals(p.getCategory())) {
+					String price = new DecimalFormat("###,###").format(p.getPrice());
+					String menu_name = String.format("%-12s", p.getMenuName());
+					String star = (c&1) == 1 ? "|☆☆ " : "|★★ ";
+					System.out.println(star + menu_name + " : " +price);
 				}
 			}
+			System.out.println("===================================");
 		}
 	}
 }

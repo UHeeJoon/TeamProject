@@ -1,4 +1,4 @@
-package cafeKioskMain;
+package view;
 
 public class AdminInfo {
 	private String cafeName = "카페";

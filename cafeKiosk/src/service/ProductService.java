@@ -17,8 +17,8 @@ public class ProductService {
 	public void deleteProduct(String menuName) {
 		productRepositoryDao.delete(menuName);
 	}
-	public void updateProduct(String menuName) {
-		productRepositoryDao.update(menuName);
+	public void updateProduct(String menuName, int price) {
+		productRepositoryDao.update(menuName, price);
 	}
 	public List<Product> getAllProduct(){
 		return productRepositoryDao.select();

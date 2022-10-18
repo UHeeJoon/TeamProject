@@ -31,4 +31,14 @@ public class ConnectDB {
 		}
 		
 	}
+	protected void terminateDB() {
+		if (conn != null) {
+			try {
+				// 연결 끊기
+				conn.close();
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) {}
+		}
+	}
 }

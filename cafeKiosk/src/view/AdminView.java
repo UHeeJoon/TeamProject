@@ -1,6 +1,6 @@
 package view;
 
-public class PrintTotalSales implements PrintView {
+public class AdminView implements PrintView {
 	@Override
 	public void print() {
 		

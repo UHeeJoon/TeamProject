@@ -22,7 +22,7 @@ public class ProductController {
 		productService.deleteProduct(name);
 	}
 	
-	public void updateProduct(String name) {
-		productService.updateProduct(name);
+	public void updateProduct(String name, int price) {
+		productService.updateProduct(name, price);
 	}
 }

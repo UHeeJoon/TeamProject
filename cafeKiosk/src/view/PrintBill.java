@@ -1,7 +1,10 @@
 package view;
 
-import cafeKioskMain.AdminInfo;
-
-public class PrintBill {
-	private AdminInfo adminInfo;
+public class PrintBill implements PrintView {
+	private AdminInfo adminInfo = new AdminInfo();
+	@Override
+	public void print() {
+		System.out.println(adminInfo);
+	};
+	
 }
