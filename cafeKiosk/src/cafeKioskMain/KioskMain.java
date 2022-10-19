@@ -1,6 +1,7 @@
 package cafeKioskMain;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import view.AdminView;
@@ -24,7 +25,7 @@ public class KioskMain {
 		while (true) {
 			System.out.println("====================\n" 
 					+ "∥ 1.주문하기\t   ∥ \n" 
-					+ "∥ 2.관리자 화면으로 가기\t   ∥ \n"
+					+ "∥ 2.관리자 화면으로 가기  ∥ \n"
 					+ "====================");
 			select = sc.nextLine();
 			if (select.equals("1")) {
@@ -45,8 +46,16 @@ public class KioskMain {
 					
 				} while (isContinue.equals("y") || isContinue.equals("Y"));
 				// end of do-while
+				Iterator<String>keys = orderHistory.keySet().iterator();
+				int total_price = 0;
+				System.out.println("===== 주문 내역 =====");
+				while(keys.hasNext()) {
+					String key = keys.next();
+					System.out.println(key + " " + orderHistory.get(key));
+					
+				}
+				System.out.println("==================");
 				
-				System.out.println(orderHistory);
 				
 			} else if (select.equals("2")) {
 				new AdminView().print();
