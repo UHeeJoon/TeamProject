@@ -1,8 +1,8 @@
 package cafeKioskMain;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
-import view.PrintBill;
 import view.PrintMenu;
 
 public class KioskMain {
@@ -10,28 +10,48 @@ public class KioskMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
-		System.out.println("===================================");
-		System.out.println("☆★☆★HOt6 Cafe에 오신걸 환영합니다!!☆★☆★");
-		System.out.println("   메인으로 가시려면 화면을 터치해주세요.");
-		System.out.println("===================================");
+		// 변수 선언 부 시작
+		String select = null;
+		String menuName = null;
+		String menuCnt = null;
+		String isContinue = null;
+		HashMap<String, Integer> orderHistory = new HashMap<>();
+		// 변수 선언부 끝
+		
+		System.out.println("\n==============================================================================================================");
+		System.out.println("==============================================================================================================");
+		System.out.println("\t||    ||     //\\\\   ||||||||||   ||||||			||||||||     //\\\\     ||||||||  ||||||||");
+		System.out.println("\t||    ||    //  \\\\      ||	 ||                     ||          //  \\\\    ||        ||      ");
+		System.out.println("\t||||||||   ||    ||     ||       ||||||    		||         ///||\\\\\\   ||||||||  ||||||||");
+		System.out.println("\t||    ||    \\\\  //      ||       ||  ||			||        //      \\\\  ||        ||      ");
+		System.out.println("\t||    ||     \\\\//       ||       ||||||			|||||||| //        \\\\ ||        ||||||||");
+		System.out.println("==============================================================================================================");
+		System.out.println("==============================================================================================================");
+
 		while (true) {
-			System.out.println("1.메뉴판");
-			System.out.println("2.주문현황 확인");
-			System.out.println("3.결제하기");
-			System.out.println("4.영수증 출력하기");
-			System.out.println("5.관리자 화면으로");
-			System.out.print("입력 >> ");
-			String select = sc.next();
-			if (select.equals("1")) {
-				new PrintMenu().print();
-				System.out.println("=====================================");
-			}
-			else if(select.equals("4")) {
-				new PrintBill().print();
-				System.out.println("=====================================");
+			new PrintMenu().print();
+			System.out.println("주문하시겠습니까?(y/n)");
+			select = sc.nextLine();
+			
+			if(select.equals("n") || select.equals("N"))
+				break;
+			else if(select.equals("y") || select.equals("Y")){
+				do {
+				System.out.println("메뉴 명 : ");
+				menuName = sc.nextLine();
+				System.out.println("수  량 : ");
+				menuCnt = sc.nextLine();
+				orderHistory.put(menuName, Integer.valueOf(menuCnt));
+				System.out.println("추가 주문 하시겠습니까?(y/n)");
+				isContinue = sc.nextLine();
+				
+				}while(isContinue.equals("y") || isContinue.equals("Y"));
 			}
 			else {
-				break;
+				System.out.println("※※※※입력 오류※※※※※");
+				try {
+					Thread.sleep(2000);
+			    } catch (InterruptedException e) { }
 			}
 		}
 		System.out.println("종료");
