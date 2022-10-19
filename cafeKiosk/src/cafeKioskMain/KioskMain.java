@@ -9,55 +9,51 @@ import view.PrintMenu;
 public class KioskMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner sc = new Scanner(System.in);
 		// 변수 선언 부 시작
+		Scanner sc = new Scanner(System.in);
 		String select = null;
 		String menuName = null;
 		String menuCnt = null;
 		String isContinue = null;
 		HashMap<String, Integer> orderHistory = new HashMap<>();
-		// 변수 선언부 끝
-
+		// 변수 선언부 종료
+		
+		// 로고 출력
 		LogoPrint();
-
+		// cafe 프로그램 시작
 		while (true) {
-			System.out.println(
-						""
-						+ "1.주문하기\n" 
-						+ "2.관리자 화면으로 가기");
-			
-			if ((sc.nextLine()).equals("1")) {
+			System.out.println("====================\n" 
+					+ "∥ 1.주문하기\t   ∥ \n" 
+					+ "∥ 2.관리자 화면으로 가기\t   ∥ \n"
+					+ "====================");
+			select = sc.nextLine();
+			if (select.equals("1")) {
+				// Menu판 출력
 				new PrintMenu().print();
-				System.out.println(">> 주문하시겠습니까?(y/n)");
-				select = sc.nextLine();
-
-				if (select.equals("n") || select.equals("N"))
-					break;
-				else if (select.equals("y") || select.equals("Y")) {
-					System.out.println("☆★☆★☆★☆★주 문☆★☆★☆★☆★");
-					do {
-						System.out.println("메뉴 명 : ");
-						menuName = sc.nextLine();
-						System.out.println("수  량 : ");
-						menuCnt = sc.nextLine();
-						orderHistory.put(menuName, Integer.valueOf(menuCnt));
-						System.out.println("추가 주문 하시겠습니까?(y/n)");
-						isContinue = sc.nextLine();
-
-					} while (isContinue.equals("y") || isContinue.equals("Y"));
-				} else {
-					System.out.println("※※※※입력 오류※※※※※");
-					try {
-						Thread.sleep(2000);
-					} catch (InterruptedException e) {
-					}
-				}
-			}
-			else {
+				System.out.println("☆★☆★☆★☆★주 문☆★☆★☆★☆★");
+				
+				// start of do-while
+				do {
+					// 메뉴 저장
+					System.out.print("메뉴 >> "); menuName = sc.nextLine();
+					// 수량 저장
+					System.out.print("수량 >> "); menuCnt = sc.nextLine();
+					// 주문 내역 orderHistory 저장
+					orderHistory = init(orderHistory,menuName, Integer.valueOf(menuCnt));
+					// 추가 주문 여부 확인
+					System.out.print("추가 주문 하시겠습니까?(y/n) >> "); isContinue = sc.nextLine();
+					
+				} while (isContinue.equals("y") || isContinue.equals("Y"));
+				// end of do-while
+				
+				System.out.println(orderHistory);
+				
+			} else if (select.equals("2")) {
 				new AdminView().print();
-			}
+			} else
+				break;
 		}
+		// cafe 프로그램 종료
 		System.out.println("종료");
 
 		sc.close();
@@ -67,11 +63,11 @@ public class KioskMain {
 		String[] logo = {
 				"\n==============================================================================================================\n"
 						+ "==============================================================================================================",
-				"\t||    ||     //\\\\   ||||||||||   ||||||			||||||||     //\\\\     ||||||||  ||||||||",
+				"\t||    ||     //\\\\   ||||||||||   ||||||			  ||||||     //\\\\     ||||||||  ||||||||",
 				"\t||    ||    //  \\\\      ||	 ||                     ||          //  \\\\    ||        ||      ",
 				"\t||||||||   ||    ||     ||       ||||||    		||         ///||\\\\\\   ||||||||  ||||||||",
 				"\t||    ||    \\\\  //      ||       ||  ||			||        //      \\\\  ||        ||      ",
-				"\t||    ||     \\\\//       ||       ||||||			|||||||| //        \\\\ ||        ||||||||",
+				"\t||    ||     \\\\//       ||       ||||||			  |||||| //        \\\\ ||        ||||||||",
 				"==============================================================================================================\n"
 						+ "==============================================================================================================\n" };
 		for (String str : logo) {
@@ -81,6 +77,14 @@ public class KioskMain {
 			} catch (InterruptedException e) {
 			}
 		}
+		return;
+	}
+	public static HashMap<String, Integer> init(HashMap<String, Integer> orderHistory, String menuName, Integer menuCnt) {
+		if (orderHistory.containsKey(menuName))
+			orderHistory.replace(menuName, orderHistory.get(menuName) + Integer.valueOf(menuCnt));
+		else
+			orderHistory.put(menuName, Integer.valueOf(menuCnt));
+		return orderHistory;
 	}
 
 }
