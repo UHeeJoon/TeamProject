@@ -8,7 +8,7 @@ import controller.ProductController;
 public class OrderHistory{
 	final private ProductController productController = new ProductController();
 	
-	public void print(HashMap<String,Integer> orderHistory) {
+	public int print(HashMap<String,Integer> orderHistory) {
 		Iterator<String>keys = orderHistory.keySet().iterator();
 		int total_price = 0;
 		System.out.println("======= 주문 내역 =======");
@@ -24,7 +24,7 @@ public class OrderHistory{
 		System.out.println("======================");
 		System.out.println("합계 : " + total_price);
 		System.out.println();
-		
+		return total_price;
 	}
 	
 }	

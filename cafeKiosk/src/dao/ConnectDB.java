@@ -36,9 +36,26 @@ public class ConnectDB {
 			try {
 				// 연결 끊기
 				conn.close();
+			} catch (SQLException e) {}
+		}
+		if (rs != null) {
+			try {
+				// 연결 끊기
 				rs.close();
+			} catch (SQLException e) {}
+		}
+		if (pstmt != null) {
+			try {
+				// 연결 끊기
 				pstmt.close();
 			} catch (SQLException e) {}
 		}
+		if (stmt != null) {
+			try {
+				// 연결 끊기
+				stmt.close();
+			} catch (SQLException e) {}
+		}
+		
 	}
 }

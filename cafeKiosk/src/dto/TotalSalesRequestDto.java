@@ -1,26 +1,31 @@
 package dto;
 
-import java.util.Date;
 
 public class TotalSalesRequestDto {
-	private String menuName;
-	private int price;
-	private Date day;
-	private int order_cnt;
+	private String menuNcnt;
+	private String day;
 	private int totalPrice;
-	public String getMenuName() {
-		return menuName;
+	public String getMenuNcnt() {
+		return menuNcnt;
 	}
-	public int getPrice() {
-		return price;
+	public void setMenuNcnt(String menuNcnt) {
+		this.menuNcnt = menuNcnt;
 	}
-	public Date getDay() {
+	public String getDay() {
 		return day;
 	}
-	public int getOrder_cnt() {
-		return order_cnt;
+	public void setDay(String day) {
+		this.day = day;
 	}
 	public int getTotalPrice() {
 		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public TotalSalesRequestDto(String menuNcnt, String day, int totalPrice) {
+		this.menuNcnt = menuNcnt;
+		this.day = day;
+		this.totalPrice = totalPrice;
 	}
 }

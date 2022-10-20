@@ -1,38 +1,24 @@
 package model;
 
-import java.util.Date;
+
 
 import dto.TotalSalesRequestDto;
 
 public class TotalSales {
-	private String menuName;
-	private int price;
-	private Date day;
-	private int order_cnt;
+	private String menuNcnt;
+	private String day;
 	private int totalPrice;
-	public String getMenuName() {
-		return menuName;
+	public String getMenuNcnt() {
+		return menuNcnt;
 	}
-	public void setMenuName(String menuName) {
-		this.menuName = menuName;
+	public void setMenuNcnt(String menuNcnt) {
+		this.menuNcnt = menuNcnt;
 	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public Date getDay() {
+	public String getDay() {
 		return day;
 	}
-	public void setDay(Date day) {
+	public void setDay(String day) {
 		this.day = day;
-	}
-	public int getOrder_cnt() {
-		return order_cnt;
-	}
-	public void setOrder_cnt(int order_cnt) {
-		this.order_cnt = order_cnt;
 	}
 	public int getTotalPrice() {
 		return totalPrice;
@@ -41,12 +27,10 @@ public class TotalSales {
 		this.totalPrice = totalPrice;
 	}
 	public TotalSales(TotalSalesRequestDto totalSalesRequestDto) {
-		super();
-		this.menuName = totalSalesRequestDto.getMenuName();
-		this.price = totalSalesRequestDto.getPrice();
+		this.menuNcnt =totalSalesRequestDto.getMenuNcnt();
 		this.day = totalSalesRequestDto.getDay();
-		this.order_cnt = totalSalesRequestDto.getOrder_cnt();
 		this.totalPrice = totalSalesRequestDto.getTotalPrice();
 	}
+
 	
 }
