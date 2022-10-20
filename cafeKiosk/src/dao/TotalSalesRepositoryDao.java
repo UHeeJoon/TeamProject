@@ -10,12 +10,16 @@ public class TotalSalesRepositoryDao extends ConnectDB implements TotalSalesRepo
 
 	@Override
 	public void insert(TotalSales totalSales) {
+		// 변수 선언
 		String day = totalSales.getDay();
 		String menuNcnt = totalSales.getMenuNcnt();
 		menuNcnt = menuNcnt.substring(1, menuNcnt.length()-1);
 		int totalPrice =  totalSales.getTotalPrice();
+		// 변수 선언 끝
 		System.out.println(day + " " +menuNcnt + " " + totalPrice );
+		// db 연결
 		connectDB();
+		
 		try {
 		String sql = "INSERT INTO Total_Sales "
 				+ "VALUES(?, ?, ?)";
@@ -32,20 +36,17 @@ public class TotalSalesRepositoryDao extends ConnectDB implements TotalSalesRepo
 //			e.printStackTrace();
 		}
 		finally {
+			// db연결 해제
 			terminateDB();
 		}
 	}
-
+	// 사용 안함 ===========================================
 	@Override
-	public void update(String menuName) {
-		connectDB();
-	}
-
+	public void update(String menuName) {}
 	@Override
-	public void delete(String menuName) {
-		connectDB();		
-	}
-
+	public void delete(String menuName) {}
+	// ==================================================
+	
 	@Override
 	public List<TotalSales> select() {
 		// TODO Auto-generated method stub
