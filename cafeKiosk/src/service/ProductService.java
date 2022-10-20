@@ -23,4 +23,7 @@ public class ProductService {
 	public List<Product> getAllProduct(){
 		return productRepositoryDao.select();
 	}
+	public int getProductPrice(String menuName) {
+		return productRepositoryDao.select(menuName);
+	}
 }

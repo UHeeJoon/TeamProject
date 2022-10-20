@@ -12,7 +12,9 @@ public class ProductController {
 	public List<Product> getAllProduct(){
 		return productService.getAllProduct();
 	}
-	
+	public int getProductPrice(String menuName) {
+		return productService.getProductPrice(menuName);
+	}
 	public void addProduct(ProductRequestDto productRequestDto) {
 		productService.addProduct(productRequestDto);
 		return;

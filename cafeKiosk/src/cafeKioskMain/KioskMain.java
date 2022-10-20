@@ -1,10 +1,10 @@
 package cafeKioskMain;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Scanner;
 
 import view.AdminView;
+import view.OrderHistory;
 import view.PrintMenu;
 
 public class KioskMain {
@@ -40,21 +40,15 @@ public class KioskMain {
 					// 수량 저장
 					System.out.print("수량 >> "); menuCnt = sc.nextLine();
 					// 주문 내역 orderHistory 저장
-					orderHistory = init(orderHistory,menuName, Integer.valueOf(menuCnt));
+					orderHistory = init(orderHistory,menuName.trim(), Integer.valueOf(menuCnt));
 					// 추가 주문 여부 확인
 					System.out.print("추가 주문 하시겠습니까?(y/n) >> "); isContinue = sc.nextLine();
 					
 				} while (isContinue.equals("y") || isContinue.equals("Y"));
 				// end of do-while
-				Iterator<String>keys = orderHistory.keySet().iterator();
-				int total_price = 0;
-				System.out.println("===== 주문 내역 =====");
-				while(keys.hasNext()) {
-					String key = keys.next();
-					System.out.println(key + " " + orderHistory.get(key));
-					
-				}
-				System.out.println("==================");
+				
+				// 주문 내역 출력
+				new OrderHistory().print(orderHistory);
 				
 				
 			} else if (select.equals("2")) {

@@ -1,7 +1,6 @@
 package view;
 
-public class AdminView implements PrintView {
-	@Override
+public class AdminView{
 	public void print() {
 		
 	}

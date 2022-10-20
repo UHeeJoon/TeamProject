@@ -7,9 +7,8 @@ import java.util.List;
 import controller.ProductController;
 import model.Product;
 
-public class PrintMenu implements PrintView{
+public class PrintMenu{
 	ProductController productController =  new ProductController();
-	@Override
 	public void print() {
 		List<Product> product = productController.getAllProduct();
 		

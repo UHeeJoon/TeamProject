@@ -34,6 +34,27 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 		}
 		return product;
 	}
+	@Override
+	public int select(String menuName) {
+		connectDB();
+		int price = 0;
+		try {
+			sql = "SELECT price FROM product WHERE menu_name = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, menuName);
+			rs = pstmt.executeQuery();
+			rs.next();
+			price = rs.getInt("price");
+		} catch (SQLException e) {
+//			e.printStackTrace();
+		} catch(Exception e){
+//			e.printStackTrace();
+		}
+		finally {
+			terminateDB();
+		}
+		return price;
+	}
 
 	@Override
 	public void insert(Product product) {
