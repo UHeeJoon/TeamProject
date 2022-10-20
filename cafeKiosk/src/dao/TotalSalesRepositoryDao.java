@@ -1,8 +1,9 @@
 package dao;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
+import dto.TotalSalesRequestDto;
 import model.TotalSales;
 import repository.TotalSalesRepository;
 
@@ -13,44 +14,84 @@ public class TotalSalesRepositoryDao extends ConnectDB implements TotalSalesRepo
 		// 변수 선언
 		String day = totalSales.getDay();
 		String menuNcnt = totalSales.getMenuNcnt();
-		menuNcnt = menuNcnt.substring(1, menuNcnt.length()-1);
-		int totalPrice =  totalSales.getTotalPrice();
+		menuNcnt = menuNcnt.substring(1, menuNcnt.length() - 1);
+		int totalPrice = totalSales.getTotalPrice();
 		// 변수 선언 끝
-		System.out.println(day + " " +menuNcnt + " " + totalPrice );
+		System.out.println(day + " " + menuNcnt + " " + totalPrice);
 		// db 연결
 		connectDB();
-		
+
 		try {
-		String sql = "INSERT INTO Total_Sales "
-				+ "VALUES(?, ?, ?)";
-		
-		//PreparedStatement 얻기 및 값 지정
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setDate(1, java.sql.Date.valueOf(day));
-		pstmt.setString(2, menuNcnt);
-		pstmt.setInt(3, totalPrice);
-		pstmt.executeUpdate();
-		}catch(SQLException e) {
+			String sql = "INSERT INTO Total_Sales " + "VALUES(?, ?, ?)";
+
+			// PreparedStatement 얻기 및 값 지정
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDate(1, java.sql.Date.valueOf(day));
+			pstmt.setString(2, menuNcnt);
+			pstmt.setInt(3, totalPrice);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
 //			e.printStackTrace();
-		}catch(NullPointerException e) {
+		} catch (NullPointerException e) {
 //			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			// db연결 해제
 			terminateDB();
 		}
 	}
+
 	// 사용 안함 ===========================================
 	@Override
-	public void update(String menuName) {}
+	public void update(String menuName) {
+	}
+
 	@Override
-	public void delete(String menuName) {}
+	public void delete(String menuName) {
+	}
 	// ==================================================
-	
+
 	@Override
-	public List<TotalSales> select() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TotalSales> getAllDays() {
+		ArrayList<TotalSales> allDay = new ArrayList<>();
+
+		connectDB();
+
+		try {
+			sql = "SELECT day, menuNcnt, Total_price FROM total_sales";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				TotalSalesRequestDto totalSalesRequestDto = new TotalSalesRequestDto();
+				totalSalesRequestDto.setDay(rs.getString("day"));
+				totalSalesRequestDto.setMenuNcnt(rs.getString("menuNcnt"));
+				totalSalesRequestDto.setTotalPrice(rs.getInt("total_price"));
+				allDay.add(new TotalSales(totalSalesRequestDto));
+			}
+		} catch (SQLException e) {
+//			e.printStackTrace();
+		} finally {
+			terminateDB();
+		}
+		return allDay;
+	}
+
+	@Override
+	public TotalSalesRequestDto getOneDay(String day) {
+		TotalSalesRequestDto totalSalesRequestDto = new TotalSalesRequestDto();
+
+		connectDB();
+
+		try {
+			sql = "SELECT day, menuNcnt, Total_price FROM total_sales WHERE day = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, day);
+			rs = pstmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			terminateDB();
+		}
+		return totalSalesRequestDto;
 	}
 
 }

@@ -1,9 +1,10 @@
 package view;
 
-public class PrintBill{
+public class PrintBill {
 	private AdminInfo adminInfo = new AdminInfo();
+
 	public void print() {
 		System.out.println(adminInfo);
 	};
-	
+
 }

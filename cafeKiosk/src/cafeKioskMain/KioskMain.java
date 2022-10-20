@@ -25,10 +25,10 @@ public class KioskMain {
 		LogoPrint();
 		// cafe 프로그램 시작
 		while (true) {
-			System.out.println("================");
-			System.out.println("∥1.주문하기\t\t∥");
-			System.out.println("∥2.관리자 화면으로 가기\t∥");
-			System.out.println("================");
+			System.out.println("==================");
+			System.out.println("∥1.주문하기\t ∥");
+			System.out.println("∥2.관리자 화면으로 가기∥");
+			System.out.println("==================");
 			select = sc.nextLine();
 			if (select.equals("1")) {
 				// Menu판 출력
@@ -44,7 +44,7 @@ public class KioskMain {
 					System.out.print("수량 >> ");
 					menuCnt = sc.nextLine();
 					// 주문 내역 orderHistory 저장
-					orderHistory = init(orderHistory, menuName.trim(), Integer.valueOf(menuCnt));
+					orderHistory = init(orderHistory, menuName.trim(), Integer.valueOf(menuCnt.trim()));
 					// 추가 주문 여부 확인
 					// 주문 내역 출력
 					new OrderHistory().print(orderHistory);
@@ -53,9 +53,9 @@ public class KioskMain {
 
 				} while (isContinue.equals("y") || isContinue.equals("Y"));
 				// end of do-while
-				
+
 				totalPrice = new OrderHistory().print(orderHistory);
-				
+
 //				System.out.println("결제 하시겠습니까?(y/n) >>");
 //				select = sc.nextLine();
 				new TotalSalesController().saveOrderHistory(orderHistory, totalPrice);

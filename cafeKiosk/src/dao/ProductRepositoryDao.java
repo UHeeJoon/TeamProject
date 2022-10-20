@@ -11,8 +11,10 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 
 	@Override
 	public List<Product> select() {
-		connectDB();
 		ArrayList<Product> product = new ArrayList<>();
+
+		connectDB();
+
 		try {
 			sql = "SELECT category_name, menu_name, price FROM product";
 			pstmt = conn.prepareStatement(sql);
@@ -26,14 +28,14 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 			}
 		} catch (SQLException e) {
 //			e.printStackTrace();
-		} catch(Exception e){
+		} catch (Exception e) {
 //			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			terminateDB();
 		}
 		return product;
 	}
+
 	@Override
 	public int select(String menuName) {
 		connectDB();
@@ -47,10 +49,9 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 			price = rs.getInt("price");
 		} catch (SQLException e) {
 //			e.printStackTrace();
-		} catch(Exception e){
+		} catch (Exception e) {
 //			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			terminateDB();
 		}
 		return price;
@@ -59,26 +60,34 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 	@Override
 	public void insert(Product product) {
 		connectDB();
+		try {
+			sql = "INSERT INTO product values(?,?,?);";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, product.getMenuName());
+			pstmt.setInt(2, product.getPrice());
+			pstmt.setString(3, product.getCategory());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+//			e.printStackTrace();
+		} finally {
+			terminateDB();
+		}
 	}
 
 	@Override
 	public void update(String menuName, int price) {
 		connectDB();
 		try {
-			String sql = new StringBuilder()	// 문자열을 추가가 가능함, String은 추가 변경이 안됨
-					.append("UPDATE total_sales SET ")
-					.append("price=?, ")
-					.append("WHERE menu_name=?")
-					.toString();
-			
-			//PreparedStatement 얻기 및 값 지정
+			String sql = new StringBuilder() // 문자열을 추가가 가능함, String은 추가 변경이 안됨
+					.append("UPDATE total_sales SET ").append("price=?, ").append("WHERE menu_name=?").toString();
+
+			// PreparedStatement 얻기 및 값 지정
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, 1200);
 			pstmt.setString(2, menuName);
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 //			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			terminateDB();
 		}
 	}
@@ -88,12 +97,13 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 		connectDB();
 		try {
 			String sql = "DELETE FROM product WHERE menu_name=?";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, menuName);
-		}catch(SQLException e) {
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
 //			e.printStackTrace();
-		}finally {
+		} finally {
 			terminateDB();
 		}
 	}
