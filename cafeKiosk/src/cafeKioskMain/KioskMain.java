@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import controller.TotalSalesController;
+import dao.TotalSalesRepositoryDao;
 import view.AdminView;
 import view.OrderHistory;
 import view.PrintMenu;
@@ -31,35 +32,39 @@ public class KioskMain {
 			System.out.println("==================");
 			select = sc.nextLine();
 			if (select.equals("1")) {
-				// Menu판 출력
-				new PrintMenu().print();
-				System.out.println("☆★☆★☆★☆★주 문☆★☆★☆★☆★");
-
-				// start of do-while
-				do {
-					// 메뉴 저장
-					System.out.print("메뉴 >> ");
-					menuName = sc.nextLine();
-					// 수량 저장
-					System.out.print("수량 >> ");
-					menuCnt = sc.nextLine();
-					// 주문 내역 orderHistory 저장
-					orderHistory = init(orderHistory, menuName.trim(), Integer.valueOf(menuCnt.trim()));
-					// 추가 주문 여부 확인
-					// 주문 내역 출력
-					new OrderHistory().print(orderHistory);
-					System.out.print("추가 주문 하시겠습니까?(y/n) >> ");
-					isContinue = sc.nextLine();
-
-				} while (isContinue.equals("y") || isContinue.equals("Y"));
-				// end of do-while
-
-				totalPrice = new OrderHistory().print(orderHistory);
-
+					// Menu판 출력
+					new PrintMenu().print();
+					System.out.print("주문하시겠습니까? >> ");				
+					select = sc.nextLine();
+					if(select.equals("y") || select.equals("Y")) {
+					System.out.println("☆★☆★☆★☆★주 문☆★☆★☆★☆★");
+	
+					// start of do-while
+					do {
+						// 메뉴 저장
+						System.out.print("메뉴 >> ");
+						menuName = sc.nextLine();
+						// 수량 저장
+						System.out.print("수량 >> ");
+						menuCnt = sc.nextLine();
+						// 주문 내역 orderHistory 저장
+						orderHistory = init(orderHistory, menuName.trim(), Integer.valueOf(menuCnt.trim()));
+						// 추가 주문 여부 확인
+						// 주문 내역 출력
+						new OrderHistory().print(orderHistory);
+						System.out.print("추가 주문 하시겠습니까?(y/n) >> ");
+						isContinue = sc.nextLine();
+	
+					} while (isContinue.equals("y") || isContinue.equals("Y"));
+					// end of do-while
+					
+					totalPrice = new OrderHistory().print(orderHistory);
+					new TotalSalesController().saveOrderHistory(orderHistory, totalPrice);
+				}
 //				System.out.println("결제 하시겠습니까?(y/n) >>");
 //				select = sc.nextLine();
-				new TotalSalesController().saveOrderHistory(orderHistory, totalPrice);
-
+				TotalSalesRepositoryDao totalSalesRepositoryDao = new TotalSalesRepositoryDao();
+				System.out.println(totalSalesRepositoryDao.getOneDay("2022-10-20").get(1).getMenuNcnt());
 			} else if (select.equals("2")) {
 				new AdminView().print();
 			} else

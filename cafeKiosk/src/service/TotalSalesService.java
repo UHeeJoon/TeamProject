@@ -19,7 +19,7 @@ public class TotalSalesService {
 		return totalSalesRepositoryDao.getAllDays();
 	}
 
-	public TotalSalesRequestDto showSomeDaySales(String day) {
+	public ArrayList<TotalSales> showSomeDaySales(String day) {
 		return totalSalesRepositoryDao.getOneDay(day);
 	}
 

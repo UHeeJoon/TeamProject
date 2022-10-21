@@ -8,7 +8,7 @@ import model.TotalSales;
 public interface TotalSalesRepository {
 	public ArrayList<TotalSales> getAllDays();
 
-	public TotalSalesRequestDto getOneDay(String day);
+	public ArrayList<TotalSales> getOneDay(String day);
 
 	public void insert(TotalSales totalSales);
 

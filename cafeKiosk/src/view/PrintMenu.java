@@ -20,9 +20,9 @@ public class PrintMenu {
 			}
 		}
 //		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡMENU LISTㅡㅡㅡㅡㅡㅡㅡㅡ");
-		System.out.println("=============== 메뉴판 ===============");
+		System.out.println("================ 메뉴판 ================");
 		for (int c = 0; c < category.size(); c++) {
-			System.out.println("============= " + category.get(c) + " ==============");
+		System.out.println("=============== " + category.get(c) + " ===============");
 
 			for (Product p : product) {
 //				System.out.println(p.getCategory() + " " + p.getMenuName() + " " + p.getPrice());
@@ -30,10 +30,10 @@ public class PrintMenu {
 					String price = new DecimalFormat("###,###").format(p.getPrice());
 					String menu_name = String.format("%-12s", p.getMenuName());
 					String star = (c & 1) == 1 ? "|☆☆ " : "|★★ ";
-					System.out.println(star + menu_name + " : " + price);
+					System.out.println(star + menu_name + "\t:\t" + price);
 				}
 			}
-			System.out.println("===================================");
+			System.out.println("======================================");
 		}
 	}
 }

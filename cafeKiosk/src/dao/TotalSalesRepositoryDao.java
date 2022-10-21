@@ -57,7 +57,7 @@ public class TotalSalesRepositoryDao extends ConnectDB implements TotalSalesRepo
 		connectDB();
 
 		try {
-			sql = "SELECT day, menuNcnt, Total_price FROM total_sales";
+			sql = "SELECT day, menuNcnt, Total_price FROM total_sales ORDER BY day";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -76,8 +76,8 @@ public class TotalSalesRepositoryDao extends ConnectDB implements TotalSalesRepo
 	}
 
 	@Override
-	public TotalSalesRequestDto getOneDay(String day) {
-		TotalSalesRequestDto totalSalesRequestDto = new TotalSalesRequestDto();
+	public ArrayList<TotalSales> getOneDay(String day) {
+		ArrayList<TotalSales> oneDay = new ArrayList<>();
 
 		connectDB();
 
@@ -86,12 +86,20 @@ public class TotalSalesRepositoryDao extends ConnectDB implements TotalSalesRepo
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, day);
 			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				TotalSalesRequestDto totalSalesRequestDto = new TotalSalesRequestDto();
+				totalSalesRequestDto.setDay(rs.getString("day"));
+				totalSalesRequestDto.setMenuNcnt(rs.getString("menuNcnt"));
+				totalSalesRequestDto.setTotalPrice(rs.getInt("total_price"));
+				oneDay.add(new TotalSales(totalSalesRequestDto));
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			terminateDB();
 		}
-		return totalSalesRequestDto;
+		return oneDay;
 	}
 
 }

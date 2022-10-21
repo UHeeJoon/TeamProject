@@ -61,7 +61,7 @@ public class ProductRepositoryDao extends ConnectDB implements ProductRepository
 	public void insert(Product product) {
 		connectDB();
 		try {
-			sql = "INSERT INTO product values(?,?,?);";
+			sql = "INSERT INTO product values(?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, product.getMenuName());
 			pstmt.setInt(2, product.getPrice());
