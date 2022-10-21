@@ -2,7 +2,6 @@ package repository;
 
 import java.util.ArrayList;
 
-import dto.TotalSalesRequestDto;
 import model.TotalSales;
 
 public interface TotalSalesRepository {

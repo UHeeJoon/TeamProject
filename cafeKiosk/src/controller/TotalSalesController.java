@@ -23,6 +23,10 @@ public class TotalSalesController {
 		return totalSalesService.showTotalSales();
 	}
 
+	public ArrayList<TotalSales> showSomeDaySales(String day){
+		return totalSalesService.showSomeDaySales(day);
+	}
+	
 	public void delete(String menuName) {
 		totalSalesService.delete(menuName);
 	}

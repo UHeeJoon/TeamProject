@@ -11,7 +11,7 @@ public class OrderHistory {
 	public int print(HashMap<String, Integer> orderHistory) {
 		Iterator<String> keys = orderHistory.keySet().iterator();
 		int total_price = 0;
-		System.out.println("============= 주문 내역 =============");
+//		System.out.println("============= 주문 내역 =============");
 		System.out.println("메뉴\t\t수량\t\t가격");
 		while (keys.hasNext()) {
 			String menu = keys.next();
@@ -21,8 +21,8 @@ public class OrderHistory {
 			System.out.println((menu.length() > 6 ? menu + "\t" : menu + "\t\t") + cnt + "\t\t" + price);
 
 		}
-		System.out.println("==================================");
-		System.out.println("합계 : " + total_price);
+		System.out.println("====================================");
+		System.out.printf("%36s", "합계 :"+ total_price);
 		System.out.println();
 		return total_price;
 	}

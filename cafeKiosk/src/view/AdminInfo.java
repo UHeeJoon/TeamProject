@@ -1,43 +1,41 @@
 package view;
 
 public class AdminInfo {
-	private String cafeName = "카페";
-	private Long adminID = 123456789L;
-	private String adress = "서울특별시 강남구 역삼동 테헤란로";
-	private String tell = "010-1234-5678";
+   private String cafeName = "HOT6카페";                     // 점포명
+   private String adminName = "김핫";                     // 대표자명
+   private Long adminId = 123456789L;                     // 사업자ID
+   private String address = "서울특별시 강남구 역삼동 테헤란로";         // 주소
+   private String tell = "010-1234-5678";                  // 전화번호
+   private String wifiPassword = "cafe1234";               // WIFI 비밀번호
 
-	private String adminName = "홍길동";
+   public String getCafeName() {
+      return "점포명 : " + cafeName;
+   }
 
-	private String wifiPassword = "cafe1234";
+   public String getAdminName() {
+      return "대표자명 : " + adminName;
+   }
+   
+   public String getAdminID() {
+      return "사업자ID : " + adminId;
+   }
 
-	public String getCafeName() {
-		return cafeName;
-	}
+   public String getAddress() {
+      return "주소 : " + address;
+   }
 
-	public Long getAdminID() {
-		return adminID;
-	}
+   public String getTell() {
+      return "전화번호 : " + tell;
+   }
 
-	public String getAdress() {
-		return adress;
-	}
+   public String getWifiPassword() {
+      return "WIFI 비밀번호 : " + wifiPassword;
+   }
 
-	public String getTell() {
-		return tell;
-	}
-
-	public String getAdminName() {
-		return adminName;
-	}
-
-	public String getWifiPassword() {
-		return wifiPassword;
-	}
-
-	@Override
-	public String toString() {
-		return "AdminInfo [cafeName=" + cafeName + ", adminID=" + adminID + ", adress=" + adress + ", tell=" + tell
-				+ ", adminName=" + adminName + ", wifiPassword=" + wifiPassword + "]";
-	}
+   @Override
+   public String toString() {
+      return "AdminInfo [cafeName=" + cafeName + ", adminID=" + adminId + ", adress=" + address + ", tell=" + tell
+            + ", adminName=" + adminName + ", wifiPassword=" + wifiPassword + "]";
+   }
 
 }

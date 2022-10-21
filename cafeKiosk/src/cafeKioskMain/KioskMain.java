@@ -7,7 +7,9 @@ import controller.TotalSalesController;
 import dao.TotalSalesRepositoryDao;
 import view.AdminView;
 import view.OrderHistory;
+import view.PrintBill;
 import view.PrintMenu;
+import view.PrintTotalSales;
 
 public class KioskMain {
 
@@ -25,6 +27,8 @@ public class KioskMain {
 		// 로고 출력
 		LogoPrint();
 		// cafe 프로그램 시작
+		
+		new PrintTotalSales().printOneDaySales("2022-10-20");
 		while (true) {
 			System.out.println("==================");
 			System.out.println("∥1.주문하기\t ∥");
@@ -51,22 +55,42 @@ public class KioskMain {
 						orderHistory = init(orderHistory, menuName.trim(), Integer.valueOf(menuCnt.trim()));
 						// 추가 주문 여부 확인
 						// 주문 내역 출력
+						System.out.println("============= 주문 내역 ==============");
 						new OrderHistory().print(orderHistory);
+						
 						System.out.print("추가 주문 하시겠습니까?(y/n) >> ");
 						isContinue = sc.nextLine();
 	
 					} while (isContinue.equals("y") || isContinue.equals("Y"));
 					// end of do-while
+						
+					System.out.println("============= 주문 내역 ==============");
+					new OrderHistory().print(orderHistory);
 					
-					totalPrice = new OrderHistory().print(orderHistory);
-					new TotalSalesController().saveOrderHistory(orderHistory, totalPrice);
+					
+					
+					new PrintBill().print(orderHistory);
+					
+					
+					
+					System.out.println("결제 하시겠습니까?(y/n) >>");
+					select = sc.nextLine();
+					if(select.equals("y") || select.equals("Y")) {
+						new TotalSalesController().saveOrderHistory(orderHistory, totalPrice);
+					}
 				}
-//				System.out.println("결제 하시겠습니까?(y/n) >>");
-//				select = sc.nextLine();
-				TotalSalesRepositoryDao totalSalesRepositoryDao = new TotalSalesRepositoryDao();
-				System.out.println(totalSalesRepositoryDao.getOneDay("2022-10-20").get(1).getMenuNcnt());
+				
 			} else if (select.equals("2")) {
+				TotalSalesRepositoryDao totalSalesRepositoryDao = new TotalSalesRepositoryDao();
+				
+				System.out.println(totalSalesRepositoryDao.getOneDay("2022-10-20").get(1).getMenuNcnt());
+				
+				
+				
 				new AdminView().print();
+				
+				
+				
 			} else
 				break;
 		}
