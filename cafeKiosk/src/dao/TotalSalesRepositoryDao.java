@@ -17,7 +17,7 @@ public class TotalSalesRepositoryDao extends ConnectDB implements TotalSalesRepo
 		menuNcnt = menuNcnt.substring(1, menuNcnt.length() - 1);
 		int totalPrice = totalSales.getTotalPrice();
 		// 변수 선언 끝
-		System.out.println(day + " " + menuNcnt + " " + totalPrice);
+		
 		// db 연결
 		connectDB();
 

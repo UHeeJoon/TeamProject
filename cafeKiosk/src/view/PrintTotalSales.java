@@ -14,7 +14,7 @@ public class PrintTotalSales {
 	public void printOneDaySales(String day) {
 		ArrayList<TotalSales> total = new ArrayList<>();
 		total = totalSalesController.showSomeDaySales(day);
-		int sum = 0;
+//		int sum = 0;
 		System.out.println("========= " + day + " 판매 내역 =========");
 		for(TotalSales t : total) {
 			String order = t.getMenuNcnt();
@@ -25,13 +25,8 @@ public class PrintTotalSales {
 				
 				orderHistory = init(orderHistory, menu, price);
 			}
-			
-			sum +=t.getTotalPrice();
+//			sum +=t.getTotalPrice();
 		}
-		
-//		System.out.println(orderHistory);
-//		System.out.println();
-//		System.out.printf("%40s", day + "의 총 판매 금액 : " + sum + "\n");
 		new OrderHistory().print(orderHistory);
 	}
 
