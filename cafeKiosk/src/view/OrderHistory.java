@@ -21,7 +21,7 @@ public class OrderHistory {
 			System.out.println((menu.length() > 6 ? menu + "\t" : menu + "\t\t") + cnt + "\t\t" + price);
 
 		}
-		System.out.println("====================================");
+		System.out.println("======================================");
 		System.out.printf("%36s", "합계 :"+ total_price);
 		System.out.println();
 		return total_price;

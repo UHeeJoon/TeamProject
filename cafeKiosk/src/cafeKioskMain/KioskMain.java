@@ -28,7 +28,8 @@ public class KioskMain {
 		LogoPrint();
 		// cafe 프로그램 시작
 		
-		new PrintTotalSales().printOneDaySales("2022-10-20");
+//		new PrintTotalSales().printOneDaySales("2022-10-20");
+		new PrintTotalSales().printAllDaySales();
 		while (true) {
 			System.out.println("==================");
 			System.out.println("∥1.주문하기\t ∥");
