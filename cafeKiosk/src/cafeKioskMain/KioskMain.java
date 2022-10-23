@@ -160,7 +160,7 @@ public class KioskMain {
 			} // 메뉴화면 선택 1일때의 if문 종료
 
 			else if (select == 2) {
-				new PrintTotalSales().printOneDaySales("2022-10-23");
+				new PrintTotalSales().printAllDaySales();
 				new AdminView().print();
 
 			} else

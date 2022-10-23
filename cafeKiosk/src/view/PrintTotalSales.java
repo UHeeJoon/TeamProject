@@ -1,8 +1,9 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.TreeSet;
 
 import controller.TotalSalesController;
 import model.TotalSales;
@@ -33,7 +34,7 @@ public class PrintTotalSales {
 	public void printAllDaySales() {
 		ArrayList<TotalSales> total = new ArrayList<>();
 		total = totalSalesController.showTotalSales();
-		HashSet<String> date = new HashSet<String>();
+		TreeSet<String> date = new TreeSet<String>(Collections.reverseOrder());
 		for(TotalSales t : total) {
 			date.add(t.getDay().split(" ")[0]);
 		}
@@ -44,7 +45,7 @@ public class PrintTotalSales {
 	}
 	
 	
-	private static HashMap<String, Integer> init(HashMap<String, Integer> orderHistory, String menuName,
+	private HashMap<String, Integer> init(HashMap<String, Integer> orderHistory, String menuName,
 			Integer menuCnt) {
 		if (orderHistory.containsKey(menuName))
 			orderHistory.replace(menuName, orderHistory.get(menuName) + Integer.valueOf(menuCnt));
