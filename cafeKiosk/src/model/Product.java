@@ -39,5 +39,10 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
+	@Override
+	public String toString() {
+		return "카테고리 : " + category + ", 메뉴 : " + menuName + ", 가격 : " + price;
+	}
 
 }

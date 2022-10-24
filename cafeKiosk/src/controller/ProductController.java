@@ -17,7 +17,11 @@ public class ProductController {
 		return productService.getProductPrice(menuName);
 	}
 
-	public void addProduct(ProductRequestDto productRequestDto) {
+	public void addProduct(Product product) {
+		ProductRequestDto productRequestDto = new ProductRequestDto();
+		productRequestDto.setCategory(product.getCategory());
+		productRequestDto.setMenuName(product.getMenuName());
+		productRequestDto.setPrice(product.getPrice());
 		productService.addProduct(productRequestDto);
 		return;
 	}

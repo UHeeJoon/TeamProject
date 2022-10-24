@@ -16,4 +16,16 @@ public class ProductRequestDto {
 	public int getPrice() {
 		return price;
 	}
+
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
 }
